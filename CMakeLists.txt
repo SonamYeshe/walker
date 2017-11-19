@@ -10,7 +10,6 @@ project(walker)
 find_package(catkin REQUIRED COMPONENTS
   actionlib
   actionlib_msgs
-  cereal_port
   geometry_msgs
   nav_msgs
   roscpp
@@ -111,7 +110,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES walker
-#  CATKIN_DEPENDS actionlib actionlib_msgs cereal_port geometry_msgs nav_msgs roscpp rospy std_msgs tf
+#  CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs nav_msgs roscpp rospy std_msgs tf
 #  DEPENDS system_lib
 )
 
