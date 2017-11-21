@@ -23,3 +23,6 @@ $ cd ../..
 $ catkin_make
 ```
 
+## Run
+$ rosrun walker walker
+$ roslaunch walker walker.launch record_except_camera:=true

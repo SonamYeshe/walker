@@ -7,7 +7,7 @@
   <arg name="record_except_camera" default="false" />
 
   <group if="$(arg record_except_camera)">
-    <node pkg="rosbag" type="record" name="record_except_camera_topics" args="-a -o record_except_camera_topics -x /camera/* " /> 
+    <node pkg="rosbag" type="record" name="record_except_camera_topics" args="-a -x /camera/(.*) -o $(find walker)/results/record_except_camera_topics" /> 
   </group>
 
 </launch>
