@@ -1,0 +1,13 @@
+<launch>
+
+  <include file = "$(find turtlebot_gazebo)/launch/turtlebot_world.launch" />
+
+  <node pkg = "walker" type = "walker" name = "walker"/>
+
+  <arg name="record_except_camera" default="false" />
+
+  <group if="$(arg record_except_camera)">
+    <node pkg="rosbag" type="record" name="record_except_camera_topics" args="-a -o record_except_camera_topics -x /camera/* " /> 
+  </group>
+
+</launch>

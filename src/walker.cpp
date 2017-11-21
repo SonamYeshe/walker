@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
       input.angular.z = 1.57;
       ROS_INFO_STREAM("Dist: " << walker.distanceToObstacle << ", Turn");
     } else {
-      input.linear.x = .15;
+      input.linear.x = .05;
       input.linear.y = 0;
       input.linear.z = 0;
       input.angular.x = 0;
