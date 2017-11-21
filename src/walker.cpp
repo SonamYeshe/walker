@@ -1,5 +1,5 @@
 #include<ros/ros.h>
-#include<sensor_mags/LaserScan.h>
+#include<sensor_msgs/LaserScan.h>
 #include<geometry_msgs/Twist.h>
 #include<ros/console.h>
 #include<sstream>
@@ -15,41 +15,30 @@ int main(int argc, char **argv) {
   ros::NodeHandle n;
   Roomba walker;
 
-  ros::Publisher walker_pub = n.advertise < geometry_msgs / Twist
-      > ("/mobile_base/commands/velocity", 1000);
-  ros::Subscriber walker_sub = n.subscribe("/scan", 1000, Roomba::ifObstacle,
-                                           &walker);
   ros::Rate loop_rate(pub_frequency);
+  ros::Publisher walker_pub = n.advertise < geometry_msgs::Twist
+      > ("/mobile_base/commands/velocity", 1000);
+//  ros::Publisher walker_pub = n.advertise<geometry_msgs/Twist> ("/mobile_base/commands/velocity", 1000);
+  ros::Subscriber walker_sub = n.subscribe("/scan", 1000, &Roomba::sortScanData, &walker);
 
-  while (ros::ok) {
+  while (ros::ok() && n.ok()) {
     geometry_msgs::Twist input;
-    if (walker.ifObstacle(const sensor_msgs::LaserScan)) {
+    if (walker.ifObstacle(walker.distanceToObstacle)) {
       input.linear.x = 0;
       input.linear.y = 0;
       input.linear.z = 0;
       input.angular.x = 0;
       input.angular.y = 0;
-      input.angular.z = .1;
-      if (walker.distanceToObstacle > .00001) {
-        ROS_INFO_STREAM("Dist: " << walker.distanceToObstacle << ", Turn");
-      }
+      input.angular.z = 1.57;
+      ROS_INFO_STREAM("Dist: " << walker.distanceToObstacle << ", Turn");
     } else {
-      if (walker.distanceToObstacle > 0) {
-        input.linear.x = .15;
-        input.linear.y = 0;
-        input.linear.z = 0;
-        input.angular.x = 0;
-        input.angular.y = 0;
-        input.angular.z = 0;
-        if (walker.distanceToObstacle < 100) {
-          ROS_INFO_STREAM("Dist: " << walker.distanceToObstacle << ", Forward");
-        }
-      }
-    }
-    if (walker.distanceToObstacle < .00001 || walker.distanceToObstacle > 99) {
+      input.linear.x = .15;
+      input.linear.y = 0;
+      input.linear.z = 0;
+      input.angular.x = 0;
+      input.angular.y = 0;
       input.angular.z = 0;
-      input.linear.x = 0;
-      ROS_INFO_STREAM("Idle");
+      ROS_INFO_STREAM("Dist: " << walker.distanceToObstacle << ", Forward");
     }
     walker_pub.publish(input);
 
