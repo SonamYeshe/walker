@@ -19,7 +19,7 @@ Jiawei Ge(SonamYeshe), hereby disclaims all copyright interest in the program `w
 ```
 $ cd <path to catkin_ws/src>
 $ git clone --recursive https://github.com/SonamYeshe/walker.git
-$ cd ../..
+$ cd ..
 $ catkin_make
 ```
 
@@ -32,12 +32,12 @@ Open a new terminal, and
 ```
 $ roslaunch walker walker.launch
 ```
-Now place the obstacles or turtlebot in the gazebo as you want, to see the roomba function that the robot will avoid all the obstacles.
+Now place the obstacles or turtlebot in the gazebo as you want, to see the roomba function that the robot will avoid all the obstacles. Note that the facade of the shelf won't work for my design right now. try to use the back side of it.
 
 ## Bagfiles
 The bagfile is recorded by the command in the walker.launchfile, the default setting is false. If you want to record again, append "record_except_camera:=true" after roslaunch command line.
 
-To see the bag file info,
+To see the bag file info, open a new terminal,
 ```
 $ roscd walker/
 $ rosbag info results/record_except_camera_topics_2017-11-21-12-22-50.bag
@@ -49,6 +49,7 @@ $ roslaunch turtlebot_gazebo turtlebot_world.launch
 ```
 Then in another terminal,
 ```
+$ roscd walker/
 $ rosbag play results/record_except_camera_topics_2017-11-21-12-22-50.bag
 ```
 
