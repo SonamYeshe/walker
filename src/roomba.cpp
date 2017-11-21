@@ -1,7 +1,7 @@
 /**
- *  @file   	roomba.cpp
- *  @brief  	define two functions in roomba class
- *  @details	sort the smallest float number from array "ranges". give the definition of whether there's a obstacle
+ *  @file     roomba.cpp
+ *  @brief    define two functions in roomba class
+ *  @details  sort the smallest float number from array "ranges". give the definition of whether there's a obstacle
  *  @author     Jiawei Ge(SonamYeshe)
  *  @copyright  BSD, GNU Public License 2017 Jiawei Ge
  *  @disclaimer Jiawei Ge(SonamYeshe), hereby disclaims all copyright interest in the program `beginner_tutorials' (which makes passes at compilers) written by Jiawei Ge(SonamYeshe).
@@ -24,8 +24,9 @@
  */
 
 void Roomba::sortScanData(const sensor_msgs::LaserScan::ConstPtr& scan) {
-  std::vector<float> v( scan->ranges.begin(), scan->ranges.begin() + scan->ranges.size() );
-  std::sort( v.begin(), v.end() );
+  std::vector<float> v(scan->ranges.begin(),
+                       scan->ranges.begin() + scan->ranges.size());
+  std::sort(v.begin(), v.end());
   Roomba::distanceToObstacle = v[0];
 }
 
@@ -36,10 +37,10 @@ void Roomba::sortScanData(const sensor_msgs::LaserScan::ConstPtr& scan) {
  */
 
 bool Roomba::ifObstacle(float distance) {
-  if (distance<0.5) {
+  if (distance < 0.5) {
     return true;
-  }
-  else {
+  } else {
     return false;
   };
 }
+

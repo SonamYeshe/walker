@@ -1,7 +1,7 @@
 /**
- *  @file   	walker.cpp
- *  @brief  	a publisher to /mobile_base/commands/velocity topic. a Subscriber to /scan topic.
- *  @details	publishing geometry_msgs::Twist type msg. subscribing sensor_msgs/LaserScan type msg. mainly want to use the smallest float number from array ranges
+ *  @file     walker.cpp
+ *  @brief    a publisher to /mobile_base/commands/velocity topic. a Subscriber to /scan topic.
+ *  @details  publishing geometry_msgs::Twist type msg. subscribing sensor_msgs/LaserScan type msg. mainly want to use the smallest float number from array ranges
  *  @author     Jiawei Ge(SonamYeshe)
  *  @copyright  BSD, GNU Public License 2017 Jiawei Ge
  *  @disclaimer Jiawei Ge(SonamYeshe), hereby disclaims all copyright interest in the program `beginner_tutorials' (which makes passes at compilers) written by Jiawei Ge(SonamYeshe).
@@ -45,7 +45,8 @@ int main(int argc, char **argv) {
    */
   ros::Publisher walker_pub = n.advertise < geometry_msgs::Twist
       > ("/mobile_base/commands/velocity", 1000);
-  ros::Subscriber walker_sub = n.subscribe("/scan", 1000, &Roomba::sortScanData, &walker);
+  ros::Subscriber walker_sub = n.subscribe("/scan", 1000, &Roomba::sortScanData,
+                                           &walker);
 
   while (ros::ok() && n.ok()) {
     geometry_msgs::Twist input;
@@ -61,7 +62,9 @@ int main(int argc, char **argv) {
       input.angular.x = 0;
       input.angular.y = 0;
       input.angular.z = 1.57;
-      ROS_INFO_STREAM("Distance to obstacle: " << walker.distanceToObstacle << ", Turning...");
+      ROS_INFO_STREAM(
+          "Distance to obstacle: " << walker.distanceToObstacle
+              << ", Turning...");
     } else {
       /**
        *  if don't find a obstacle ahead, movee forward.
@@ -74,7 +77,9 @@ int main(int argc, char **argv) {
       input.angular.x = 0;
       input.angular.y = 0;
       input.angular.z = 0;
-      ROS_INFO_STREAM("Distance to obstacle: " << walker.distanceToObstacle << ", Forwarding...");
+      ROS_INFO_STREAM(
+          "Distance to obstacle: " << walker.distanceToObstacle
+              << ", Forwarding...");
     }
     /**
      * The publish() function is how you send messages. The parameter

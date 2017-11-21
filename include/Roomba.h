@@ -1,7 +1,7 @@
 /**
- *  @file   	Roomba.h
- *  @brief  	header of the roomba.cpp
- *  @details	define one class member, two class member functions 
+ *  @file     Roomba.h
+ *  @brief    header of the roomba.cpp
+ *  @details  define one class member, two class member functions 
  *  @author     Jiawei Ge(SonamYeshe)
  *  @copyright  BSD, GNU Public License 2017 Jiawei Ge
  *  @disclaimer Jiawei Ge(SonamYeshe), hereby disclaims all copyright interest in the program `beginner_tutorials' (which makes passes at compilers) written by Jiawei Ge(SonamYeshe).
@@ -23,3 +23,4 @@ class Roomba {
 };
 
 #endif  //  INCLUDE_ROOMBA_H_"
+
