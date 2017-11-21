@@ -1,0 +1,6 @@
+$ cppcheck --enable=all --std=c++11 --includes-file=cppcheck.txt --check-config --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+Checking src/roomba.cpp...
+1/2 files checked 29% done
+Checking src/walker.cpp...
+2/2 files checked 100% done
+

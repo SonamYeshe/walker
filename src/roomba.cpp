@@ -9,13 +9,13 @@
  Jiawei Ge
  */
 
+#include<ros/console.h>
 #include<iterator>
 #include<vector>
 #include<algorithm>
-#include<ros/console.h>
 #include<sstream>
 #include"std_msgs/String.h"
-#include"Roomba.h" 
+#include"Roomba.h"
 
 /**
  *  @brief  acquire data from /scan topic and sort the smallest float number in the array "ranges"  
@@ -41,6 +41,6 @@ bool Roomba::ifObstacle(float distance) {
     return true;
   } else {
     return false;
-  };
+  }
 }
 
